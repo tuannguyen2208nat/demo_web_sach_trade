@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss'
 
 function App() {
   return (
@@ -7,15 +7,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Hello , Welcome to " Sách Trace "
         </p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          className="App-contact"
+          href="https://www.facebook.com/lilnat2208/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          My contact
         </a>
       </header>
     </div>
