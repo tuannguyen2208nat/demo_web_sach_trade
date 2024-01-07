@@ -1,24 +1,14 @@
 import React from "react";
-import Trace_input from "./trace_input";
-import Trace_buy from "./trace_buy";
-
+import TraceInput from "./trace_input";
+import TraceBuy from "./trace_trace";
+import Traceadd from "./trace_add";
 class Trace extends React.Component {
     state = {
         book: [
-            { book_name: '', book_num: '' }
+            { book_name: 'test', book_num: '1' },
+            { book_name: 'example', book_num: '2' },
+            { book_name: 'sample', book_num: '3' }
         ]
-    }
-
-    addBook = (val_name) => {
-        const existingBook = this.state.book.find(book => book.book_name === val_name);
-
-        if (existingBook) {
-            existingBook.book_num = parseInt(existingBook.book_num, 10) + 1;
-            alert(`Tên sách: ${existingBook.book_name}, Số lượng sách: ${existingBook.book_num}`);
-        }
-        else {
-            alert('Không có')
-        }
     }
 
     buyBook = () => {
@@ -29,13 +19,14 @@ class Trace extends React.Component {
     render() {
         return (
             <>
-                <Trace_input
-                    addBook={this.addBook}
+                <TraceInput
+                    book={this.state.book}
                 />
-                <Trace_buy
-                    book={this.book}
+                <TraceBuy
+                    book={this.state.book}
                     buyBook={this.buyBook}
                 />
+                <Traceadd />
             </>
         );
     }

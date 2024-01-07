@@ -1,28 +1,44 @@
 import React from "react";
+import { toast } from 'react-toastify';
 
-class Trace_input extends React.Component {
+class TraceInput extends React.Component {
     state = {
-        book: ''
+        book: '',
+        num: '',
+        check: null
     }
 
     handleChangeBook = (event) => {
         this.setState({
             book: event.target.value
-        })
+        });
     }
 
     handleSubmitChangeBook = () => {
-        if (!this.state.book) {
-            alert('Vui lòng nhập thông tin sách');
-            return null;
-        } else {
-            this.props.addBook({
-                book: this.state.book
-            });
+        const { book } = this.props;
+        const currBookName = this.state.book;
+        const existingBook = book.find(item => item.book_name === currBookName);
+
+        if (!currBookName) {
+            toast.error(`Vui lòng nhập thông tin sách`);
+            return;
+        }
+
+        if (existingBook) {
             this.setState({
-                book: ''
+                num: existingBook.book_num,
+                check: true
+            });
+        } else {
+            this.setState({
+                check: false
             });
         }
+
+        this.setState({
+            book: '',
+            num: ''
+        });
     }
 
     render() {
@@ -35,14 +51,26 @@ class Trace_input extends React.Component {
                     <input
                         type="text"
                         value={this.state.book}
-                        onChange={(event) => this.handleChangeBook(event)}
+                        onChange={this.handleChangeBook}
                     />
                     &nbsp;
-                    <button onClick={() => this.handleSubmitChangeBook()}>Tìm</button>
+                    <button onClick={this.handleSubmitChangeBook}>Tìm</button>
+                </div>
+                <div className="third">
+                    {this.state.check === true && (
+                        <div>
+                            Tên sách : {this.state.book}- , số lượng : {this.state.num} cuốn
+                        </div>
+                    )}
+                    {this.state.check === false && (
+                        <div>
+                            Không có dữ liệu
+                        </div>
+                    )}
                 </div>
             </>
         );
     }
 }
 
-export default Trace_input;
+export default TraceInput;
