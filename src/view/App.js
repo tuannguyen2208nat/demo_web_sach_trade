@@ -2,7 +2,7 @@
 import './App.scss'
 import Home from './components/home';
 import Trace from './components/trace';
-import Contact from './components/contact';
+import User from './components/user';
 import About from './components/about';
 
 import Nav from '../Nav/Nav';
@@ -14,27 +14,28 @@ import {
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <header className="App-header">
-        <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
+        <Nav />
+        <header className="App-header">
           <Switch>
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/contact">
-              <Contact />
+            <Route path="/trace">
+              <Trace />
+            </Route>
+            <Route path="/user">
+              <User />
             </Route>
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/trace">
-              <Trace />
-            </Route>
           </Switch>
-        </BrowserRouter>
-      </header>
-    </div>
+
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
