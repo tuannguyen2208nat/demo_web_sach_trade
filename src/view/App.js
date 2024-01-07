@@ -1,14 +1,15 @@
-import logo from './logo.svg';
+
 import './App.scss'
 import Home from './components/home';
+import Trace from './components/trace';
 import Contact from './components/contact';
+import About from './components/about';
 
 import Nav from '../Nav/Nav';
 import {
   BrowserRouter,
   Switch,
   Route,
-  // Link,
 } from "react-router-dom";
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
     <div className="App">
       <Nav />
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <BrowserRouter>
           <Switch>
             <Route path="/" exact>
@@ -24,6 +24,12 @@ function App() {
             </Route>
             <Route path="/contact">
               <Contact />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/trace">
+              <Trace />
             </Route>
           </Switch>
         </BrowserRouter>
