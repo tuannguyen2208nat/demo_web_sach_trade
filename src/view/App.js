@@ -1,9 +1,9 @@
 
 import './App.scss'
-import Home from './components/home';
-import Trace from './components/trace';
-import User from './components/user';
-import About from './components/about';
+import Home from './components/home/home';
+import Trace from './components/trace/trace';
+import User from './components/user/user';
+import About from './components/about/about';
 
 import Nav from '../Nav/Nav';
 import {

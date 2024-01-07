@@ -1,12 +1,12 @@
 import React from "react";
 
-class User extends React.Component {
+class Trace_buy extends React.Component {
     render() {
         return (
             <>
             </>
-        )
+        );
     }
 }
 
-export default User;
+export default Trace_buy;

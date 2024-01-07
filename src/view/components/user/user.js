@@ -1,15 +1,15 @@
 import React from "react";
 
-class Trace extends React.Component {
+class User extends React.Component {
     render() {
         return (
             <>
                 <div>
-                    Trace
+                    User
                 </div>
             </>
-        );
+        )
     }
 }
 
-export default Trace;
+export default User;
