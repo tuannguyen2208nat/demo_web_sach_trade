@@ -40,12 +40,13 @@ class TradeInput extends React.Component {
         }
     }
 
-    handleResetbook = () => {
-        this.setState({
-            book: '',
-            num: ''
+    handleSubmitTrade = () => {
+        const sach = this.state.book;
+        this.props.tradeBook({
+            sach
         });
     }
+
 
     render() {
         return (
@@ -67,7 +68,7 @@ class TradeInput extends React.Component {
                         <div className="third_child">
                             Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
                             &nbsp;
-                            <button className="third_button">trade</button>
+                            <button className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>
                         </div>
                     )}
                     {this.state.check2 === false && (

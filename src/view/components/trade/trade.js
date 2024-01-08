@@ -12,7 +12,22 @@ class Trade extends React.Component {
         ]
     }
 
-    tradeBook = () => {
+    tradeBook = (val_name) => {
+        const existingBook = this.state.book.find(book => book.book_name === val_name);
+
+        if (existingBook) {
+            // If the book exists, increment book_num by 1
+            existingBook.book_num = existingBook.book_num + 1;
+        } else {
+            // If the book doesn't exist, add a new book with book_num set to 1
+            const newBook = { book_name: val_name, book_num: 1 };
+            this.setState(prevState => ({
+                book: [...prevState.book, newBook]
+            }));
+        }
+    }
+
+    addBook = (val_name) => {
 
     }
 
@@ -22,8 +37,11 @@ class Trade extends React.Component {
             <>
                 <TradeInput
                     book={this.state.book}
+                    tradeBook={this.tradeBook}
                 />
-                <TradeAdd />
+                <TradeAdd
+                    addBook={this.addBook}
+                />
             </>
         );
     }
