@@ -7,8 +7,8 @@ class Trade_add extends React.Component {
         super();
         this.state = {
             isModalOpen: false,
-            bookName: '',
-            bookQuantity: 0,
+            book_name: '',
+            book_num: 0,
         };
     }
 
@@ -26,11 +26,10 @@ class Trade_add extends React.Component {
     };
 
     handleAddBookSubmit = () => {
-        // Do something with the bookName and bookQuantity values
-        console.log('Book Name:', this.state.bookName);
-        console.log('Book Quantity:', this.state.bookQuantity);
-
-        // Close the modal
+        this.props.addBook({
+            book_name: this.state.book_name,
+            book_num: this.state.book_num
+        })
         this.handleCloseModal();
     };
 
@@ -48,27 +47,27 @@ class Trade_add extends React.Component {
                 >
                     <h2>Add Book</h2>
                     <label>
-                        Book Name:
-                        <input
+                        Tên sách :
+                        {" "}<input
                             type="text"
-                            name="bookName"
-                            value={this.state.bookName}
+                            name="book_name"
+                            value={this.state.book_name}
                             onChange={this.handleInputChange}
                         />
                     </label>
                     <br />
                     <label>
-                        Book Quantity:
-                        <input
+                        Số lượng :
+                        {" "}<input
                             type="number"
-                            name="bookQuantity"
-                            value={this.state.bookQuantity}
+                            name="book_num"
+                            value={this.state.book_num}
                             onChange={this.handleInputChange}
                         />
                     </label>
                     <br />
                     <button onClick={this.handleAddBookSubmit}>Add Book</button>
-                    <button onClick={this.handleCloseModal}>Cancel</button>
+                    &nbsp;<button onClick={this.handleCloseModal}>Cancel</button>
                 </Modal>
             </>
         );

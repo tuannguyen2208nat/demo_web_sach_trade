@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 class TradeInput extends React.Component {
     state = {
         book: '',
-        num: '',
+        num: 0,
         check1: null,
         check2: null
     }

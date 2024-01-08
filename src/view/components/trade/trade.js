@@ -27,9 +27,30 @@ class Trade extends React.Component {
         }
     }
 
-    addBook = (val_name) => {
+    addBook = (val) => {
+        const existingBook = this.state.book.find(book => book.book_name === val.book_name);
 
+        if (existingBook) {
+            let num = val.book_num;
+            const updatedBooks = this.state.book.map(book => {
+                if (book.book_name === val.book_name) {
+                    return { ...book, book_num: parseInt(book.book_num, 10) + num };
+                }
+                return book;
+            });
+
+            this.setState({ book: updatedBooks });
+            alert('có');
+        } else {
+            // Book does not exist, add a new book
+            const newBook = { book_name: val.book_name, book_num: val.book_num };
+            this.setState(prevState => ({
+                book: [...prevState.book, newBook]
+            }));
+            alert('không');
+        }
     }
+
 
 
     render() {
