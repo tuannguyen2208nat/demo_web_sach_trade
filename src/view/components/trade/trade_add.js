@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import './trade.scss';
+import { toast } from 'react-toastify';
 
 class Trade_add extends React.Component {
     constructor() {
@@ -26,11 +27,16 @@ class Trade_add extends React.Component {
     };
 
     handleAddBookSubmit = () => {
-        this.props.addBook({
-            book_name: this.state.book_name,
-            book_num: this.state.book_num
-        })
-        this.handleCloseModal();
+        if (this.state.book_num > -1) {
+            this.props.addBook({
+                book_name: this.state.book_name,
+                book_num: this.state.trade_num
+            })
+            this.handleCloseModal();
+        }
+        else {
+            toast.error(`Vui lòng nhập lại số lượng sách`);
+        }
     };
 
     render() {

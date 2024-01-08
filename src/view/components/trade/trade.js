@@ -2,53 +2,52 @@ import React from "react";
 import TradeInput from "./trade_input";
 import TradeAdd from "./trade_add";
 import './trade.scss'
+import { toast } from 'react-toastify';
 
 class Trade extends React.Component {
     state = {
         book: [
-            { book_name: 'test', book_num: '1' },
-            { book_name: 'example', book_num: '2' },
-            { book_name: 'sample', book_num: '3' }
+            { book_name: 'test', book_num: 1 },
+            { book_name: 'example', book_num: 2 },
+            { book_name: 'sample', book_num: 3 }
         ]
     }
 
-    tradeBook = (val_name) => {
-        const existingBook = this.state.book.find(book => book.book_name === val_name);
-
-        if (existingBook) {
-            // If the book exists, increment book_num by 1
-            existingBook.book_num = existingBook.book_num + 1;
-        } else {
-            // If the book doesn't exist, add a new book with book_num set to 1
-            const newBook = { book_name: val_name, book_num: 1 };
-            this.setState(prevState => ({
-                book: [...prevState.book, newBook]
-            }));
+    tradeBook = (val) => {
+        let { book } = this.state;
+        let bookCopy = [...book];
+        let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
+        let num1 = parseInt(bookCopy[objIndex].book_num, 10);
+        let num2 = parseInt(val.trade_num, 10);
+        if (num1 - num2 >= 0) {
+            bookCopy[objIndex].book_num = num1 - num2;
+            this.setState({
+                book: bookCopy
+            });
         }
+
     }
 
     addBook = (val) => {
-        const existingBook = this.state.book.find(book => book.book_name === val.book_name);
+        let { book } = this.state;
+        let bookCopy = [...book];
+        let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
 
-        if (existingBook) {
-            let num = val.book_num;
-            const updatedBooks = this.state.book.map(book => {
-                if (book.book_name === val.book_name) {
-                    return { ...book, book_num: parseInt(book.book_num, 10) + num };
-                }
-                return book;
+        if (objIndex !== -1) {
+            // Book already exists, update the quantity
+            let num1 = parseInt(bookCopy[objIndex].book_num, 10);
+            let num2 = parseInt(val.book_num, 10);
+            bookCopy[objIndex].book_num = num1 + num2;
+            this.setState({
+                book: bookCopy
             });
-
-            this.setState({ book: updatedBooks });
-            alert('có');
         } else {
-            // Book does not exist, add a new book
-            const newBook = { book_name: val.book_name, book_num: val.book_num };
-            this.setState(prevState => ({
+            let newBook = { book_name: val.book_name, book_num: parseInt(val.book_num, 10) }; // Parse as an integer
+            this.setState((prevState) => ({
                 book: [...prevState.book, newBook]
             }));
-            alert('không');
         }
+        toast.success(`Thêm sách thành công`);
     }
 
 

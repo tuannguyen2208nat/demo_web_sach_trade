@@ -6,7 +6,9 @@ class TradeInput extends React.Component {
         book: '',
         num: 0,
         check1: null,
-        check2: null
+        check2: null,
+        button_on: false,
+        trace_num: 0
     }
 
     handleChangeBook = (event) => {
@@ -41,10 +43,23 @@ class TradeInput extends React.Component {
     }
 
     handleSubmitTrade = () => {
-        const sach = this.state.book;
-        this.props.tradeBook({
-            sach
-        });
+        this.setState({ button_on: true })
+    }
+    handleEnterNumTrace = (event) => {
+        this.setState({
+            trace_num: event.target.value
+        })
+
+    }
+    handleSubmitNumTrace = () => {
+        let check = this.state.trace_num;
+        if (check > -1) {
+            toast.success(`Nhập thành công`)
+        }
+        else {
+            toast.error(`Nhập lại số lượng trade`)
+        }
+
     }
 
 
@@ -69,6 +84,14 @@ class TradeInput extends React.Component {
                             Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
                             &nbsp;
                             <button className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>
+                            {this.state.button_on === true &&
+                                <>
+                                    <input onChange={(event) => this.handleEnterNumTrace(event)} />
+                                    &nbsp;
+                                    <button onClick={(event) => this.handleSubmitNumTrace(event)}>Submit</button>
+                                </>
+
+                            }
                         </div>
                     )}
                     {this.state.check2 === false && (
