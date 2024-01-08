@@ -1,6 +1,6 @@
 import React from "react";
 
-class Trace_add extends React.Component {
+class Trade_add extends React.Component {
     render() {
         return (
             <>
@@ -9,4 +9,4 @@ class Trace_add extends React.Component {
     }
 }
 
-export default Trace_add;
+export default Trade_add;

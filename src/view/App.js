@@ -1,6 +1,6 @@
 import './App.scss'
 import Home from './components/home/home';
-import Trace from './components/trace/trace';
+import Trade from './components/trade/trade';
 import User from './components/user/user';
 import About from './components/about/about';
 import { ToastContainer } from 'react-toastify';
@@ -22,8 +22,8 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/trace">
-              <Trace />
+            <Route path="/trade">
+              <Trade />
             </Route>
             <Route path="/user">
               <User />

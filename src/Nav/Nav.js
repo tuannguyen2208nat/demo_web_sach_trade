@@ -9,8 +9,8 @@ class Nav extends React.Component {
                 <NavLink to="/" activeClassName="active" exact={true}>
                     Home
                 </NavLink>
-                <NavLink to="/trace" activeClassName="active">
-                    Trace
+                <NavLink to="/trade" activeClassName="active">
+                    Trade
                 </NavLink>
                 <NavLink to="/user" activeClassName="active">
                     User

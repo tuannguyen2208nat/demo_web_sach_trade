@@ -1,16 +1,18 @@
 import React from "react";
 import { toast } from 'react-toastify';
 
-class TraceInput extends React.Component {
+class TradeInput extends React.Component {
     state = {
         book: '',
         num: '',
-        check: null
+        check1: null,
+        check2: null
     }
 
     handleChangeBook = (event) => {
         this.setState({
-            book: event.target.value
+            book: event.target.value,
+            check1: false
         });
     }
 
@@ -27,14 +29,18 @@ class TraceInput extends React.Component {
         if (existingBook) {
             this.setState({
                 num: existingBook.book_num,
-                check: true
+                check1: true,
+                check2: true
             });
         } else {
             this.setState({
-                check: false
+                check1: false,
+                check2: false
             });
         }
+    }
 
+    handleResetbook = () => {
         this.setState({
             book: '',
             num: ''
@@ -57,12 +63,14 @@ class TraceInput extends React.Component {
                     <button onClick={this.handleSubmitChangeBook}>Tìm</button>
                 </div>
                 <div className="third">
-                    {this.state.check === true && (
-                        <div>
-                            Tên sách : {this.state.book}- , số lượng : {this.state.num} cuốn
+                    {this.state.check2 === true && this.state.check1 === true && (
+                        <div className="third_child">
+                            Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
+                            &nbsp;
+                            <button className="third_button">trade</button>
                         </div>
                     )}
-                    {this.state.check === false && (
+                    {this.state.check2 === false && (
                         <div>
                             Không có dữ liệu
                         </div>
@@ -73,4 +81,4 @@ class TraceInput extends React.Component {
     }
 }
 
-export default TraceInput;
+export default TradeInput;
