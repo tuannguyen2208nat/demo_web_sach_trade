@@ -8,7 +8,7 @@ class TradeInput extends React.Component {
         check1: null,
         check2: null,
         button_on: false,
-        trace_num: 0
+        trade_num: 0
     }
 
     handleChangeBook = (event) => {
@@ -45,16 +45,23 @@ class TradeInput extends React.Component {
     handleSubmitTrade = () => {
         this.setState({ button_on: true })
     }
-    handleEnterNumTrace = (event) => {
-        this.setState({
-            trace_num: event.target.value
-        })
-
+    handleCloseSubmitTrade = () => {
+        this.setState({ button_on: false })
     }
-    handleSubmitNumTrace = () => {
-        let check = this.state.trace_num;
+    handleEnterNumTrade = (event) => {
+        this.setState({
+            trade_num: event.target.value
+        })
+    }
+
+    handleSubmitNumTrade = () => {
+        let check = this.state.trade_num;
         if (check > -1) {
-            toast.success(`Nhập thành công`)
+            this.props.tradeBook({
+                book_name: this.state.book,
+                book_num: this.state.num
+            }, this.state.trade_num);
+            this.handleCloseSubmitTrade();
         }
         else {
             toast.error(`Nhập lại số lượng trade`)
@@ -86,9 +93,9 @@ class TradeInput extends React.Component {
                             <button className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>
                             {this.state.button_on === true &&
                                 <>
-                                    <input onChange={(event) => this.handleEnterNumTrace(event)} />
+                                    <input onChange={(event) => this.handleEnterNumTrade(event)} />
                                     &nbsp;
-                                    <button onClick={(event) => this.handleSubmitNumTrace(event)}>Submit</button>
+                                    <button onClick={(event) => this.handleSubmitNumTrade(event)}>Submit</button>
                                 </>
 
                             }

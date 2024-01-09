@@ -9,7 +9,7 @@ class Trade_add extends React.Component {
         this.state = {
             isModalOpen: false,
             book_name: '',
-            book_num: 0,
+            book_num: 0
         };
     }
 
@@ -28,11 +28,17 @@ class Trade_add extends React.Component {
 
     handleAddBookSubmit = () => {
         if (this.state.book_num > -1) {
-            this.props.addBook({
-                book_name: this.state.book_name,
-                book_num: this.state.trade_num
-            })
-            this.handleCloseModal();
+            if (this.state.book_num === 0) {
+                toast.error(`Vui lòng nhập lại số lượng sách`);
+            }
+            else {
+                this.props.addBook({
+                    book_name: this.state.book_name,
+                    book_num: this.state.book_num,
+                })
+                this.handleCloseModal();
+            }
+
         }
         else {
             toast.error(`Vui lòng nhập lại số lượng sách`);

@@ -13,19 +13,32 @@ class Trade extends React.Component {
         ]
     }
 
-    tradeBook = (val) => {
+    tradeBook = (val, trade_num) => {
         let { book } = this.state;
         let bookCopy = [...book];
         let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
         let num1 = parseInt(bookCopy[objIndex].book_num, 10);
-        let num2 = parseInt(val.trade_num, 10);
+        let num2 = trade_num;
         if (num1 - num2 >= 0) {
-            bookCopy[objIndex].book_num = num1 - num2;
-            this.setState({
-                book: bookCopy
-            });
-        }
+            if (num1 - num2 === 0) {
+                let currentBook = this.state.book;
+                currentBook = currentBook.filter((item) => item.book_name !== val.book_name)
+                this.setState({
+                    book: currentBook
+                })
+            }
+            else {
+                bookCopy[objIndex].book_num = num1 - num2;
+                this.setState({
+                    book: bookCopy
+                });
+            }
 
+            toast.success(`Trade thành công`)
+        }
+        else {
+            toast.error(`Trade thất bại`)
+        }
     }
 
     addBook = (val) => {
@@ -33,10 +46,11 @@ class Trade extends React.Component {
         let bookCopy = [...book];
         let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
 
-        if (objIndex !== -1) {
+        if (objIndex >= 0) {
             // Book already exists, update the quantity
             let num1 = parseInt(bookCopy[objIndex].book_num, 10);
             let num2 = parseInt(val.book_num, 10);
+            console.log('num', num2)
             bookCopy[objIndex].book_num = num1 + num2;
             this.setState({
                 book: bookCopy
