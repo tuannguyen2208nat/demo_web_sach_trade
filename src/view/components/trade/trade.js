@@ -45,9 +45,7 @@ class Trade extends React.Component {
         let { book } = this.state;
         let bookCopy = [...book];
         let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
-
         if (objIndex >= 0) {
-            // Book already exists, update the quantity
             let num1 = parseInt(bookCopy[objIndex].book_num, 10);
             let num2 = parseInt(val.book_num, 10);
             console.log('num', num2)

@@ -1,7 +1,7 @@
 import './App.scss'
 import Home from './components/home/home';
 import Trade from './components/trade/trade';
-import User from './components/user/user';
+import Login from './components/user/user';
 import About from './components/about/about';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +26,7 @@ function App() {
               <Trade />
             </Route>
             <Route path="/user">
-              <User />
+              <Login />
             </Route>
             <Route path="/about">
               <About />

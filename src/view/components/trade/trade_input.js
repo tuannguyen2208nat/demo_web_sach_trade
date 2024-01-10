@@ -43,7 +43,13 @@ class TradeInput extends React.Component {
     }
 
     handleSubmitTrade = () => {
-        this.setState({ button_on: true })
+        if (this.state.button_on === true) {
+            this.setState({ button_on: false })
+        }
+        else {
+            this.setState({ button_on: true })
+        }
+
     }
     handleCloseSubmitTrade = () => {
         this.setState({ button_on: false })
@@ -89,10 +95,11 @@ class TradeInput extends React.Component {
                     {this.state.check2 === true && this.state.check1 === true && (
                         <div className="third_child">
                             Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
-                            &nbsp;
+                            <br />
                             <button className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>
                             {this.state.button_on === true &&
                                 <>
+                                    &nbsp;
                                     <input onChange={(event) => this.handleEnterNumTrade(event)} />
                                     &nbsp;
                                     <button onClick={(event) => this.handleSubmitNumTrade(event)}>Submit</button>
