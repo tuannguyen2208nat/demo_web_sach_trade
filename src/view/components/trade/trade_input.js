@@ -51,9 +51,7 @@ class TradeInput extends React.Component {
         }
 
     }
-    handleCloseSubmitTrade = () => {
-        this.setState({ button_on: false })
-    }
+
     handleEnterNumTrade = (event) => {
         this.setState({
             trade_num: event.target.value
@@ -61,18 +59,29 @@ class TradeInput extends React.Component {
     }
 
     handleSubmitNumTrade = () => {
+        if (!this.state.trade_num) {
+            toast.error(`Nhập lại số lượng trade`)
+            return null;
+        }
         let check = this.state.trade_num;
         if (check > -1) {
-            this.props.tradeBook({
+            let num = this.props.tradeBook({
                 book_name: this.state.book,
                 book_num: this.state.num
             }, this.state.trade_num);
-            this.handleCloseSubmitTrade();
+            if (num !== null) {
+                this.setState({
+                    num: num
+                })
+            }
         }
         else {
             toast.error(`Nhập lại số lượng trade`)
         }
+    }
 
+    handleCancelNumTrade = () => {
+        this.setState({ button_on: false })
     }
 
 
@@ -89,20 +98,22 @@ class TradeInput extends React.Component {
                         onChange={this.handleChangeBook}
                     />
                     &nbsp;
-                    <button onClick={this.handleSubmitChangeBook}>Tìm</button>
+                    <button style={{ cursor: 'pointer' }} onClick={this.handleSubmitChangeBook}>Tìm</button>
                 </div>
                 <div className="third">
                     {this.state.check2 === true && this.state.check1 === true && (
                         <div className="third_child">
                             Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
                             <br />
-                            <button className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>
+                            {this.state.button_on === false && <button style={{ cursor: 'pointer' }} className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>}
                             {this.state.button_on === true &&
                                 <>
                                     &nbsp;
-                                    <input onChange={(event) => this.handleEnterNumTrade(event)} />
+                                    <input placeholder="Nhập số lượng sách" onChange={(event) => this.handleEnterNumTrade(event)} />
                                     &nbsp;
-                                    <button onClick={(event) => this.handleSubmitNumTrade(event)}>Submit</button>
+                                    <button style={{ cursor: 'pointer' }} onClick={(event) => this.handleSubmitNumTrade(event)}>Submit</button>
+                                    &nbsp;
+                                    <button style={{ cursor: 'pointer' }} onClick={() => this.handleCancelNumTrade()}>Cancel</button>
                                 </>
 
                             }

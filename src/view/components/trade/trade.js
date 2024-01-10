@@ -3,6 +3,7 @@ import TradeInput from "./trade_input";
 import TradeAdd from "./trade_add";
 import './trade.scss'
 import { toast } from 'react-toastify';
+import axios from "../customize-axios";
 
 class Trade extends React.Component {
     state = {
@@ -17,6 +18,10 @@ class Trade extends React.Component {
         let { book } = this.state;
         let bookCopy = [...book];
         let objIndex = bookCopy.findIndex((item) => item.book_name === val.book_name);
+        if (objIndex === -1) {
+            toast.error(`Trade thất bại (Không tìm thấy sách)`);
+            return null;
+        }
         let num1 = parseInt(bookCopy[objIndex].book_num, 10);
         let num2 = trade_num;
         if (num1 - num2 >= 0) {
@@ -26,18 +31,21 @@ class Trade extends React.Component {
                 this.setState({
                     book: currentBook
                 })
+                toast.success(`Trade thành công`)
+                return 0;
             }
             else {
                 bookCopy[objIndex].book_num = num1 - num2;
+                let num = num1 - num2;
                 this.setState({
                     book: bookCopy
                 });
+                toast.success(`Trade thành công`)
+                return num;
             }
-
-            toast.success(`Trade thành công`)
         }
         else {
-            toast.error(`Trade thất bại`)
+            toast.error(`Trade thất bại (Số lượng khả dụng không đủ)`)
         }
     }
 
@@ -62,8 +70,6 @@ class Trade extends React.Component {
         toast.success(`Thêm sách thành công`);
     }
 
-
-
     render() {
         return (
             <>
@@ -79,4 +85,9 @@ class Trade extends React.Component {
     }
 }
 
-export default Trade;
+const loginApi = (email, password) => {
+    return axios.post("/api/login", { email, password })
+}
+
+
+export { Trade, loginApi }

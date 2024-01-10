@@ -1,6 +1,6 @@
 import './App.scss'
 import Home from './components/home/home';
-import Trade from './components/trade/trade';
+import { Trade } from './components/trade/trade';
 import Login from './components/user/user';
 import About from './components/about/about';
 import { ToastContainer } from 'react-toastify';

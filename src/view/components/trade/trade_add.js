@@ -27,6 +27,10 @@ class Trade_add extends React.Component {
     };
 
     handleAddBookSubmit = () => {
+        if (!this.state.book_name) {
+            toast.error(`Vui lòng nhập tên sách`);
+            return null;
+        }
         if (this.state.book_num > -1) {
             if (this.state.book_num === 0) {
                 toast.error(`Vui lòng nhập lại số lượng sách`);
@@ -48,7 +52,7 @@ class Trade_add extends React.Component {
     render() {
         return (
             <>
-                <button className="add" onClick={() => this.handleButton_addBook()}>
+                <button style={{ cursor: 'pointer' }} className="add" onClick={() => this.handleButton_addBook()}>
                     Add book
                 </button>
 
@@ -78,8 +82,8 @@ class Trade_add extends React.Component {
                         />
                     </label>
                     <br />
-                    <button onClick={this.handleAddBookSubmit}>Add Book</button>
-                    &nbsp;<button onClick={this.handleCloseModal}>Cancel</button>
+                    <button style={{ cursor: 'pointer' }} onClick={this.handleAddBookSubmit}>Add Book</button>
+                    &nbsp;<button style={{ cursor: 'pointer' }} onClick={this.handleCloseModal}>Cancel</button>
                 </Modal>
             </>
         );

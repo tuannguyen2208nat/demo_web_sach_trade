@@ -7,23 +7,25 @@
     padding: 20px;
     .title{
         font-Weight: bold;
-         padding-Top: 30px;
+        padding-Top: 30px;
+        margin-bottom: 10px;
     }
     .text{
         font-Weight: 600;
         text-align: left;
         padding-bottom: 3px;
+        font-size: 17px;
     }
     input {
-        padding : 7px 5px;
+        padding : 12px 5px;
         margin-bottom: 7px; 
         outline: none;
         background: #1618230f;
         border: #1618230f;
-        // border-radius: 3px;
+        border-radius: 3px;
+        width: 100%;
         &:hover{
             background-color: #dedede;
-            border: 1px solid #dedede;
         }
     }
     button {
@@ -31,10 +33,26 @@
         padding: 10px;
         border-radius: 3px;
         border: 1px solid #dedede;
+        border:none;
+        outline: none;
+        cursor:pointer;
+        &.active{
+            background-color: #fe2c55;
+            color : white;
+        }
     }
     .back{
         margin-top:30px;
         font-size:12px;
         cursor:pointer;
+    }
+    .input-2{
+        position: relative;
+        i {
+            position: absolute;
+            top: 12px;
+            right: 5px;
+            font-size:15px
+        }
     }
 }
