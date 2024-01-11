@@ -11,6 +11,8 @@ const Login = (props) => {
     const [password, setPassword] = useState("");
     const [isShowPassword, setIsShowPassword] = useState(false);
     const [loadingApi, setloadingApi] = useState(false);
+    const [register, setregister] = useState(null);
+
     const handleLogin = async () => {
         if (!email || !password) {
             toast.error("Vui lòng nhập email hoặc password")
@@ -34,45 +36,70 @@ const Login = (props) => {
 
     const handleLogout = () => {
         props.handleChangeLog();
+        setregister(null);
+    }
+
+    const handleGoback = () => {
+        setregister(null);
     }
 
     let val = props.user_loggin;
     return (
-
         <>
-            {val === false ?
-                <div className="login-container col-12 col-sm-4">
-                    <div className="title" >Login</div>
-                    <div className="text" >Email or username</div>
-                    <input type="text" placeholder="Email or username"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
-                    <div className="input-2">
-                        <input
-                            type={isShowPassword === true ? "text" : "password"}
-                            placeholder="Password"
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
+            <div>
+                {
+                    register === null && (
+                        <div>
+                            <button onClick={() => setregister(true)}>Đăng kí</button>
+                            &nbsp;
+                            <button onClick={() => setregister(false)}>Đăng nhập</button>
+                        </div>
+                    )
+                }
+                {register === true && (
+                    <>
+                        <div>
+                            Register
+                        </div>
+                        <div className="back" style={{ fontSize: '12px', cursor: 'pointer' }}>
+                            <i className="fa-solid fa-angles-left" onClick={() => handleGoback()}></i> <span onClick={() => handleGoback()}>Go back</span>
+                        </div>
+                    </>
+                )}
+
+                {register === false && (val === false ?
+                    <div className="login-container col-12 col-sm-4">
+                        <div className="title" >Login</div>
+                        <div className="text" >Email or username</div>
+                        <input type="text" placeholder="Email or username"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
                         />
-                        <i className={isShowPassword === true ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}
-                            onClick={() => setIsShowPassword(!isShowPassword)}></i>
-                    </div>
-                    <button
-                        className={email && password ? "active" : ""}
-                        disabled={email && password ? false : true}
-                        onClick={() => handleLogin()}
-                    >
-                        {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
-                    </button>
-                    <div className="back">
-                        <i className="fa-solid fa-angles-left"></i> Go back
-                    </div>
-                </div >
-                : <button onClick={handleLogout}>Logout</button>
-            }
-
-
+                        <div className="input-2">
+                            <input
+                                type={isShowPassword === true ? "text" : "password"}
+                                placeholder="Password"
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
+                            <i className={isShowPassword === true ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}
+                                onClick={() => setIsShowPassword(!isShowPassword)}></i>
+                        </div>
+                        <button
+                            className={email && password ? "active" : ""}
+                            disabled={email && password ? false : true}
+                            onClick={() => handleLogin()}
+                        >
+                            {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
+                        </button>
+                        <div className="back">
+                            <i className="fa-solid fa-angles-left" onClick={() => handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
+                        </div>
+                    </div >
+                    : <button onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</button>
+                )
+                }
+            </div>
         </>
     )
 
