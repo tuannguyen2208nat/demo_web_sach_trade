@@ -6,15 +6,21 @@ import { toast } from 'react-toastify';
 import axios from "../customize-axios";
 
 class Trade extends React.Component {
+
+    componentDidMount() {
+        let val = this.props.user_loggin;
+        this.setUserLogged(val);
+    }
+
     state = {
         book: [
             { book_name: 'test', book_num: 1 },
             { book_name: 'example', book_num: 2 },
             { book_name: 'sample', book_num: 3 }
         ],
-        user_login: null
-    }
+        user_logged: false
 
+    }
     tradeBook = (val, trade_num) => {
         let { book } = this.state;
         let bookCopy = [...book];
@@ -71,24 +77,23 @@ class Trade extends React.Component {
         toast.success(`Thêm sách thành công`);
     }
 
-    handleChangeLogin = () => {
+    setUserLogged = (val) => {
         this.setState({
-            user_login: this.props.user_login
+            user_logged: val
         })
     }
 
     render() {
-        this.handleChangeLogin();
         return (
             <>
                 <TradeInput
                     book={this.state.book}
                     tradeBook={this.tradeBook}
-                    user_login={this.state.user_login}
+                    user_logged={this.state.user_logged}
                 />
                 <TradeAdd
                     addBook={this.addBook}
-                    user_login={this.state.user_login}
+                    user_logged={this.state.user_logged}
                 />
             </>
         );

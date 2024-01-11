@@ -15,13 +15,14 @@ import {
 
 class App extends React.Component {
   state = {
-    user_login: false
+    user_loggin: false
   }
   handleLogin = () => {
     this.setState({
-      user_login: true
+      user_loggin: true
     })
   }
+
   render() {
     return (
       <BrowserRouter>
@@ -34,12 +35,13 @@ class App extends React.Component {
               </Route>
               <Route path="/trade">
                 <Trade
-                  user_login={this.state.user_login}
+                  user_loggin={this.state.user_loggin}
                 />
               </Route>
               <Route path="/user">
                 <Login
-                  handleLogin={this.state.handleLogin} />
+                  handleLogin={this.handleLogin}
+                />
               </Route>
               <Route path="/about">
                 <About />

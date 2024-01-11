@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
 
 
-const Login = () => {
+const Login = (props) => {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,8 +21,8 @@ const Login = () => {
         if (res && res.token) {
             localStorage.setItem("token", res.token);
             toast.success('Đăng nhập thành công');
-            this.prop.handleLogin();
-            history.push("/");
+            props.handleLogin();
+            history.push("/trade");
         }
         else {
             if (res && res.status === 400) {
