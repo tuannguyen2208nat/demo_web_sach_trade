@@ -2,24 +2,35 @@ import React, { useState } from "react";
 import './user.scss'
 import { loginApi } from "../trade/trade";
 import { toast } from 'react-toastify';
+import { useHistory } from "react-router-dom";
+
 
 const Login = () => {
+    const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isShowPassword, setIsShowPassword] = useState(false);
-
+    const [loadingApi, setloadingApi] = useState(false);
     const handleLogin = async () => {
         if (!email || !password) {
             toast.error("Vui lòng nhập email hoặc password")
             return;
         }
-        let res = await loginApi("eve.holt@reqres.in", password)
+        setloadingApi(true);
+        let res = await loginApi(email, password)
         if (res && res.token) {
             localStorage.setItem("token", res.token);
+            toast.success('Đăng nhập thành công');
+            this.prop.handleLogin();
+            history.push("/");
         }
-
+        else {
+            if (res && res.status === 400) {
+                toast.error('User not found')
+            }
+        }
+        setloadingApi(false);
     }
-
     return (
         <>
             <div className="login-container col-12 col-sm-4">
@@ -43,7 +54,9 @@ const Login = () => {
                     className={email && password ? "active" : ""}
                     disabled={email && password ? false : true}
                     onClick={() => handleLogin()}
-                >Login</button>
+                >
+                    {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
+                </button>
                 <div className="back">
                     <i className="fa-solid fa-angles-left"></i> Go back
                 </div>

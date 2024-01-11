@@ -14,6 +14,11 @@ class Trade_add extends React.Component {
     }
 
     handleButton_addBook = () => {
+        let user_login = this.props.user_login;
+        if (!user_login) {
+            toast.error(`Vui lòng đăng nhập để add`)
+            return null;
+        }
         this.setState({ isModalOpen: true });
     };
 

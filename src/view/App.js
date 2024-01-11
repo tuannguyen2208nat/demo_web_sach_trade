@@ -1,3 +1,4 @@
+import React from "react";
 import './App.scss'
 import Home from './components/home/home';
 import { Trade } from './components/trade/trade';
@@ -12,43 +13,57 @@ import {
   Route,
 } from "react-router-dom";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Nav />
-        <header className="App-header">
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/trade">
-              <Trade />
-            </Route>
-            <Route path="/user">
-              <Login />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-          </Switch>
+class App extends React.Component {
+  state = {
+    user_login: false
+  }
+  handleLogin = () => {
+    this.setState({
+      user_login: true
+    })
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Nav />
+          <header className="App-header">
+            <Switch>
+              <Route path="/" exact>
+                <Home />
+              </Route>
+              <Route path="/trade">
+                <Trade
+                  user_login={this.state.user_login}
+                />
+              </Route>
+              <Route path="/user">
+                <Login
+                  handleLogin={this.state.handleLogin} />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+            </Switch>
 
-        </header>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <ToastContainer />
-      </div>
-    </BrowserRouter>
-  );
+          </header>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <ToastContainer />
+        </div>
+      </BrowserRouter >
+    );
+  }
+
 }
 
 export default App;

@@ -11,7 +11,8 @@ class Trade extends React.Component {
             { book_name: 'test', book_num: 1 },
             { book_name: 'example', book_num: 2 },
             { book_name: 'sample', book_num: 3 }
-        ]
+        ],
+        user_login: null
     }
 
     tradeBook = (val, trade_num) => {
@@ -70,15 +71,24 @@ class Trade extends React.Component {
         toast.success(`Thêm sách thành công`);
     }
 
+    handleChangeLogin = () => {
+        this.setState({
+            user_login: this.props.user_login
+        })
+    }
+
     render() {
+        this.handleChangeLogin();
         return (
             <>
                 <TradeInput
                     book={this.state.book}
                     tradeBook={this.tradeBook}
+                    user_login={this.state.user_login}
                 />
                 <TradeAdd
                     addBook={this.addBook}
+                    user_login={this.state.user_login}
                 />
             </>
         );
