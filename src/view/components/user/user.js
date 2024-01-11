@@ -21,7 +21,7 @@ const Login = (props) => {
         if (res && res.token) {
             localStorage.setItem("token", res.token);
             toast.success('Đăng nhập thành công');
-            props.handleLogin();
+            props.handleChangeLog();
             history.push("/trade");
         }
         else {
@@ -31,36 +31,48 @@ const Login = (props) => {
         }
         setloadingApi(false);
     }
+
+    const handleLogout = () => {
+        props.handleChangeLog();
+    }
+
+    let val = props.user_loggin;
     return (
+
         <>
-            <div className="login-container col-12 col-sm-4">
-                <div className="title" >Login</div>
-                <div className="text" >Email or username</div>
-                <input type="text" placeholder="Email or username"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-                <div className="input-2">
-                    <input
-                        type={isShowPassword === true ? "text" : "password"}
-                        placeholder="Password"
-                        value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+            {val === false ?
+                <div className="login-container col-12 col-sm-4">
+                    <div className="title" >Login</div>
+                    <div className="text" >Email or username</div>
+                    <input type="text" placeholder="Email or username"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                     />
-                    <i className={isShowPassword === true ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}
-                        onClick={() => setIsShowPassword(!isShowPassword)}></i>
-                </div>
-                <button
-                    className={email && password ? "active" : ""}
-                    disabled={email && password ? false : true}
-                    onClick={() => handleLogin()}
-                >
-                    {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
-                </button>
-                <div className="back">
-                    <i className="fa-solid fa-angles-left"></i> Go back
-                </div>
-            </div >
+                    <div className="input-2">
+                        <input
+                            type={isShowPassword === true ? "text" : "password"}
+                            placeholder="Password"
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
+                        />
+                        <i className={isShowPassword === true ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"}
+                            onClick={() => setIsShowPassword(!isShowPassword)}></i>
+                    </div>
+                    <button
+                        className={email && password ? "active" : ""}
+                        disabled={email && password ? false : true}
+                        onClick={() => handleLogin()}
+                    >
+                        {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
+                    </button>
+                    <div className="back">
+                        <i className="fa-solid fa-angles-left"></i> Go back
+                    </div>
+                </div >
+                : <button onClick={handleLogout}>Logout</button>
+            }
+
+
         </>
     )
 

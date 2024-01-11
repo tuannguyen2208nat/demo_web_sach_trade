@@ -17,10 +17,11 @@ class App extends React.Component {
   state = {
     user_loggin: false
   }
-  handleLogin = () => {
+  handleChangeLog = () => {
+    let val = this.state.user_loggin;
     this.setState({
-      user_loggin: true
-    })
+      user_loggin: !val
+    });
   }
 
   render() {
@@ -40,7 +41,8 @@ class App extends React.Component {
               </Route>
               <Route path="/user">
                 <Login
-                  handleLogin={this.handleLogin}
+                  user_loggin={this.state.user_loggin}
+                  handleChangeLog={this.handleChangeLog}
                 />
               </Route>
               <Route path="/about">
