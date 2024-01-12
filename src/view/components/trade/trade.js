@@ -104,5 +104,9 @@ const loginApi = (email, password) => {
     return axios.post("/api/login", { email, password })
 }
 
+const registerApi = (email, password) => {
+    return axios.post("/api/register", { email, password })
+}
 
-export { Trade, loginApi }
+
+export { Trade, loginApi, registerApi }

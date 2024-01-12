@@ -24,6 +24,12 @@ class App extends React.Component {
     });
   }
 
+  handleChangeRegister = () => {
+    this.setState({
+      user_loggin: false
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -43,6 +49,7 @@ class App extends React.Component {
                 <Login
                   user_loggin={this.state.user_loggin}
                   handleChangeLog={this.handleChangeLog}
+                  handleChangeRegister={this.handleChangeRegister}
                 />
               </Route>
               <Route path="/about">

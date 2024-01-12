@@ -3,7 +3,7 @@ import './user.scss'
 import { loginApi } from "../trade/trade";
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
-
+import Register from "./register";
 
 const Login = (props) => {
     const history = useHistory();
@@ -39,6 +39,11 @@ const Login = (props) => {
         setregister(null);
     }
 
+    const handleRegistered = () => {
+        props.handleChangeRegister();
+        setregister(false);
+    }
+
     const handleGoback = () => {
         setregister(null);
     }
@@ -46,7 +51,7 @@ const Login = (props) => {
     let val = props.user_loggin;
     return (
         <>
-            <div>
+            {val ? <button onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</button> : <div>
                 {
                     register === null && (
                         <div>
@@ -59,7 +64,9 @@ const Login = (props) => {
                 {register === true && (
                     <>
                         <div>
-                            Register
+                            <Register
+                                handleRegistered={handleRegistered}
+                            />
                         </div>
                         <div className="back" style={{ fontSize: '12px', cursor: 'pointer' }}>
                             <i className="fa-solid fa-angles-left" onClick={() => handleGoback()}></i> <span onClick={() => handleGoback()}>Go back</span>
@@ -99,7 +106,8 @@ const Login = (props) => {
                     : <button onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</button>
                 )
                 }
-            </div>
+            </div>}
+
         </>
     )
 

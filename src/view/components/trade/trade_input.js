@@ -45,7 +45,7 @@ class TradeInput extends React.Component {
     handleSubmitTrade = () => {
         let user_logged = this.props.user_logged;
         if (!user_logged) {
-            toast.error(`Vui lòng đăng nhập để trade`)
+            toast.error(`Vui lòng đăng nhập để sử dụng`)
             return null;
         }
         if (this.state.button_on === true) {
