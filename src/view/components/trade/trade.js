@@ -1,6 +1,7 @@
 import React from "react";
 import TradeInput from "./trade_input";
 import TradeAdd from "./trade_add";
+import TradeShow from "./trade_show";
 import './trade.scss'
 import { toast } from 'react-toastify';
 import axios from "../customize-axios";
@@ -14,9 +15,9 @@ class Trade extends React.Component {
 
     state = {
         book: [
-            { book_name: 'test', book_num: 1 },
-            { book_name: 'example', book_num: 2 },
-            { book_name: 'sample', book_num: 3 }
+            { book_name: 'test', book_num: 10 },
+            { book_name: 'example', book_num: 20 },
+            { book_name: 'sample', book_num: 30 }
         ],
         user_logged: false
 
@@ -69,7 +70,7 @@ class Trade extends React.Component {
                 book: bookCopy
             });
         } else {
-            let newBook = { book_name: val.book_name, book_num: parseInt(val.book_num, 10) }; // Parse as an integer
+            let newBook = { book_name: val.book_name, book_num: parseInt(val.book_num, 10) };
             this.setState((prevState) => ({
                 book: [...prevState.book, newBook]
             }));
@@ -86,15 +87,19 @@ class Trade extends React.Component {
     render() {
         return (
             <>
-                <TradeInput
-                    book={this.state.book}
-                    tradeBook={this.tradeBook}
-                    user_logged={this.state.user_logged}
-                />
-                <TradeAdd
-                    addBook={this.addBook}
-                    user_logged={this.state.user_logged}
-                />
+                <div style={{ paddingTop: '50px' }}>
+                    <TradeInput
+                        book={this.state.book}
+                        tradeBook={this.tradeBook}
+                        user_logged={this.state.user_logged}
+                    />
+                    <TradeAdd
+                        addBook={this.addBook}
+                        user_logged={this.state.user_logged}
+                    />
+                    <TradeShow />
+                </div>
+
             </>
         );
     }

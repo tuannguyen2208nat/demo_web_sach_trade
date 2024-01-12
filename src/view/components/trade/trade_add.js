@@ -15,7 +15,6 @@ class Trade_add extends React.Component {
 
     handleButton_addBook = () => {
         let user_logged = this.props.user_logged;
-        console.log("user", user_logged)
         if (!user_logged) {
             toast.error(`Vui lòng đăng nhập để sử dụng`)
             return null;

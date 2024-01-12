@@ -2,10 +2,12 @@ import React from "react";
 import './App.scss'
 import Home from './components/home/home';
 import { Trade } from './components/trade/trade';
-import Login from './components/user/user';
+import User from './components/user/user';
 import About from './components/about/about';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Register from "./components/user/register";
+import Login from "./components/user/login";
 import Nav from '../Nav/Nav';
 import {
   BrowserRouter,
@@ -17,16 +19,11 @@ class App extends React.Component {
   state = {
     user_loggin: false
   }
+
   handleChangeLog = () => {
     let val = this.state.user_loggin;
     this.setState({
       user_loggin: !val
-    });
-  }
-
-  handleChangeRegister = () => {
-    this.setState({
-      user_loggin: false
     });
   }
 
@@ -45,11 +42,19 @@ class App extends React.Component {
                   user_loggin={this.state.user_loggin}
                 />
               </Route>
-              <Route path="/user">
+              <Route path="/user" exact>
+                <User
+                  user_loggin={this.state.user_loggin}
+                  handleChangeLog={this.handleChangeLog}
+                />
+              </Route>
+              <Route path="/user/register">
+                <Register />
+              </Route>
+              <Route path="/user/login">
                 <Login
                   user_loggin={this.state.user_loggin}
                   handleChangeLog={this.handleChangeLog}
-                  handleChangeRegister={this.handleChangeRegister}
                 />
               </Route>
               <Route path="/about">

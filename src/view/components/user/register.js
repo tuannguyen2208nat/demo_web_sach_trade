@@ -11,7 +11,11 @@ const Register = (props) => {
     const [confirm_password, setconfirm_password] = useState("");
     const [isShowPassword, setIsShowPassword] = useState(false);
     const [loadingApi, setloadingApi] = useState(false);
-    const handleLogin = async () => {
+
+    const handleGoback = () => {
+        history.push("/user");
+    }
+    const handleRegister = async () => {
         if (!email || !password) {
             toast.error("Vui lòng nhập email và password")
             return;
@@ -21,8 +25,7 @@ const Register = (props) => {
         if (res && res.token) {
             localStorage.setItem("token", res.token);
             toast.success('Đăng kí thành công');
-            props.handleRegistered();
-            history.push("/user");
+            history.push("/user/login");
         }
         else {
             if (res && res.status === 400) {
@@ -45,7 +48,7 @@ const Register = (props) => {
                     <div className="text" >Nhập mật khẩu </div>
                     <input
                         type={isShowPassword === true ? "text" : "password"}
-                        placeholder="Password"
+                        placeholder="Nhập mật khẩu mới"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
@@ -54,7 +57,7 @@ const Register = (props) => {
                     <div className="text" >Xác nhận mật khẩu </div>
                     <input
                         type={isShowPassword === true ? "text" : "password"}
-                        placeholder="confirm_password"
+                        placeholder="Xác nhận lại mật khẩu"
                         value={confirm_password}
                         onChange={(event) => setconfirm_password(event.target.value)}
                     />
@@ -62,10 +65,15 @@ const Register = (props) => {
                 <button
                     className={email && password && confirm_password && password === confirm_password ? "active" : ""}
                     disabled={email && password && confirm_password && password === confirm_password ? false : true}
-                    onClick={() => handleLogin()}
+                    onClick={() => handleRegister()}
                 >
                     {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Register</span>}
                 </button>
+                <br />
+                <div className="back" style={{ fontSize: '12px', cursor: 'pointer' }}>
+                    <i className="fa-solid fa-angles-left" onClick={() => handleGoback()}></i> <span onClick={() => handleGoback()}>Go back</span>
+                </div>
+
             </div>
         </>
     )
