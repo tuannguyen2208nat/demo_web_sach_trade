@@ -16,7 +16,7 @@ class Home extends React.Component {
                 </div>
 
                 < div style={{ color: 'black' }}>
-                    Hello , Welcome to " Sách Trace "
+                    Hello , Welcome to " Sách Trade"
                 </div >
             </>
         )

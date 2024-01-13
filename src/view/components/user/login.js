@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './user.scss'
+import './login.scss'
 import { loginApi } from "./user";
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
@@ -37,6 +37,8 @@ const Login = (props) => {
         history.push("/user");
     }
 
+
+
     return (
         <>
             {
@@ -64,8 +66,8 @@ const Login = (props) => {
                     >
                         {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Login</span>}
                     </button>
-                    <div className="back">
-                        <i className="fa-solid fa-angles-left" onClick={() => handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
+                    <div className="back" onClick={() => handleGoback()}>
+                        <i className="fa-solid fa-angles-left"></i> Go back
                     </div>
                 </div >
             }

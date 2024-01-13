@@ -75,7 +75,7 @@ class TradeShow extends React.Component {
         return (
             <>
                 {search_book === false &&
-                    <div className="gridContainerStyle">
+                    <div className="gridContainerStyle ">
                         {books.map((book, index) => (
                             <div key={index} className="bookContainerStyle">
                                 <div>  <img src={book.book_image} alt={`${book.book_name}`} className="imageStyle" /></div>

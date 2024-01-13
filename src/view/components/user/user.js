@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "../customize-axios";
-import './user.scss'
 
 const User = (props) => {
     const history = useHistory();
@@ -26,19 +25,13 @@ const User = (props) => {
         <>
             {props.user_loggin === false && (
                 <div >
-                    <button onClick={() => setState(true)} className="first">Đăng kí</button>
+                    <button onClick={() => setState(true)} >Đăng kí</button>
                     &nbsp;
-                    <button onClick={() => setState(false)} className="first">Đăng nhập</button>
+                    <button onClick={() => setState(false)} >Đăng nhập</button>
                 </div>
             )}
-            {
-                state !== null &&
-                <div className="back">
-                    <i className="fa-solid fa-angles-left" onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
-                </div>
-            }
             {state === true && (
-                <>{handleRegister()}</>
+                <>{handleRegister()} </>
             )}
             {state === false && (
                 <>{handleLogin()}</>

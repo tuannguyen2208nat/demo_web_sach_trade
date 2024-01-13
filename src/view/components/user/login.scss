@@ -1,10 +1,4 @@
-.first{
 
-    width: 120px;
-    height: 100px;
-    margin:100px auto;
-    cursor:pointer;
-}
 
 .login-container{
     font-size:20px;
@@ -50,13 +44,12 @@
         }
     }
     .back{
-        margin-top:30px;
-        position: absolute;
-        top: 47px;
-        left: 550px;
-        font-size:16px;
+        text-align: center;
+        margin-top:20px;
         cursor:pointer;
+        font-size: 17px;
     }
+    
     .input-2{
         position: relative;
         i {
@@ -67,3 +60,4 @@
         }
     }
 }
+

@@ -7,7 +7,7 @@ class About extends React.Component {
                 <div style={{ paddingTop: '100px' }}>
                     <div style={{ fontSize: "20px" }}>
                         This website is created for people to exchange books with each other.
-                        The website's name is "Sách Trace"
+                        The website's name is "Sách Trade"
                     </div >
                     <div >
                         <a

@@ -38,10 +38,10 @@ class TradeSearch extends React.Component {
                     type="text"
                     value={this.state.book}
                     onChange={this.handleChangeBook}
-                    style={{ width: '670px', height: '27px', borderRadius: '5px', fontSize: '20px' }}
+                    style={{ width: '670px', height: '27px', borderRadius: '39px', fontSize: '20px' }}
                 />
                 &nbsp;
-                <button style={{ cursor: 'pointer', width: '60px', height: '30px', borderRadius: '5px' }} onClick={this.handleSubmitChangeBook}>Tìm</button>
+                <button style={{ cursor: 'pointer', width: '60px', height: '30px', borderRadius: '100px' }} onClick={this.handleSubmitChangeBook}>Tìm</button>
             </div>
         );
     }

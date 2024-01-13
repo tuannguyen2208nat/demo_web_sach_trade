@@ -12,9 +12,6 @@ const Register = (props) => {
     const [isShowPassword, setIsShowPassword] = useState(false);
     const [loadingApi, setloadingApi] = useState(false);
 
-    const handleGoback = () => {
-        history.push("/user");
-    }
     const handleRegister = async () => {
         if (!email || !password) {
             toast.error("Vui lòng nhập email và password")
@@ -33,6 +30,10 @@ const Register = (props) => {
             }
         }
         setloadingApi(false);
+    }
+
+    const handleGoback = () => {
+        history.push("/user");
     }
 
     return (
@@ -69,12 +70,10 @@ const Register = (props) => {
                 >
                     {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Register</span>}
                 </button>
-                <br />
-                <div className="back" >
-                    <i className="fa-solid fa-angles-left" onClick={() => handleGoback()}></i> <span onClick={() => handleGoback()}>Go back</span>
+                <div className="back" onClick={() => handleGoback()}>
+                    <i className="fa-solid fa-angles-left"></i> Go back
                 </div>
-
-            </div>
+            </div >
         </>
     )
 }
