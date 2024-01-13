@@ -26,3 +26,40 @@
     height:70px;
     width:70px;
 }
+.gridContainerStyle {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 50px; 
+    margin: 150px auto;
+    max-width: 800px;
+}
+
+.bookContainerStyle {
+    width: 250px; 
+    height: 500px; 
+    margin-bottom: 20px;
+    border: 2px solid grey; 
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+
+    .imageStyle {
+        margin-top: 10px;
+        width: 200px;
+        height: 300px;
+    }
+    .buttonContainer {
+        margin-top: auto; /* Pushes the button to the bottom */
+        margin-bottom: 5px;
+    }
+    
+    button {
+        width: 100px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+}
+
+
+

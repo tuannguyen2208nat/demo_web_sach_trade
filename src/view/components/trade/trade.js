@@ -4,7 +4,10 @@ import TradeAdd from "./trade_add";
 import TradeShow from "./trade_show";
 import './trade.scss'
 import { toast } from 'react-toastify';
-import axios from "../customize-axios";
+import book1 from '../../../asset/images/dac_nhan_tam.png';
+import book2 from '../../../asset/images/quang_ganh_lo_di_va_vui_song.png'
+import book3 from '../../../asset/images/nghe_thuat_noi_truoc_cong_chung.png'
+import book4 from '../../../asset/images/nghi_giau_lam_giau.png'
 
 class Trade extends React.Component {
 
@@ -15,13 +18,28 @@ class Trade extends React.Component {
 
     state = {
         book: [
-            { book_name: 'test', book_num: 10 },
-            { book_name: 'example', book_num: 20 },
-            { book_name: 'sample', book_num: 30 }
+            { book_name: 'Đắc nhân tâm', book_num: 10, book_image: book1 },
+            { book_name: 'Quẳng gánh lo đi và vui sống', book_num: 20, book_image: book2 },
+            { book_name: 'Nghệ thuật nói trước công chúng', book_num: 30, book_image: book3 },
+            { book_name: 'Nghĩ giàu làm giàu', book_num: 40, book_image: book4 }
         ],
-        user_logged: false
-
+        user_logged: false,
+        search_book: false,
+        search_name_book: ''
     }
+
+    handleSearchBook = () => {
+        this.setState({
+            search_book: true
+        })
+    }
+
+    handleSearchNameBook = (val) => {
+        this.setState({
+            search_name_book: val
+        })
+    }
+
     tradeBook = (val, trade_num) => {
         let { book } = this.state;
         let bookCopy = [...book];
@@ -92,26 +110,22 @@ class Trade extends React.Component {
                         book={this.state.book}
                         tradeBook={this.tradeBook}
                         user_logged={this.state.user_logged}
+                        handleSearchBook={this.handleSearchBook}
+                        handleSearchNameBook={this.handleSearchNameBook}
                     />
                     <TradeAdd
                         addBook={this.addBook}
                         user_logged={this.state.user_logged}
                     />
-                    <TradeShow />
+                    <TradeShow
+                        search_book={this.state.search_book}
+                        book={this.state.book}
+                        search_name_book={this.state.search_name_book}
+                    />
                 </div>
-
             </>
         );
     }
 }
 
-const loginApi = (email, password) => {
-    return axios.post("/api/login", { email, password })
-}
-
-const registerApi = (email, password) => {
-    return axios.post("/api/register", { email, password })
-}
-
-
-export { Trade, loginApi, registerApi }
+export default Trade;

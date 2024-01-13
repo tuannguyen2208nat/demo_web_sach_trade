@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './register.scss'
-import { registerApi } from "../trade/trade";
+import { registerApi } from "./user";
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
 

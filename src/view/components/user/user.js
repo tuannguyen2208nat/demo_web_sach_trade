@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "../customize-axios";
 
 const User = (props) => {
     const history = useHistory();
@@ -40,6 +41,14 @@ const User = (props) => {
     )
 }
 
+const loginApi = (email, password) => {
+    return axios.post("/api/login", { email, password })
+}
+
+const registerApi = (email, password) => {
+    return axios.post("/api/register", { email, password })
+}
 
 
-export default User;
+
+export { User, loginApi, registerApi };

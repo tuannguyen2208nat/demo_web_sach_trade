@@ -34,12 +34,15 @@ class TradeInput extends React.Component {
                 check1: true,
                 check2: true
             });
+            this.props.handleSearchNameBook(currBookName);
         } else {
             this.setState({
                 check1: false,
                 check2: false
             });
+            this.props.handleSearchNameBook('');
         }
+        this.props.handleSearchBook();
     }
 
     handleSubmitTrade = () => {
