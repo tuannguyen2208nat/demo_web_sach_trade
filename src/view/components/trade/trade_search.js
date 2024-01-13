@@ -4,17 +4,11 @@ import { toast } from 'react-toastify';
 class TradeSearch extends React.Component {
     state = {
         book: '',
-        num: 0,
-        check1: null,
-        check2: null,
-        button_on: false,
-        trade_num: 0
     }
 
     handleChangeBook = (event) => {
         this.setState({
             book: event.target.value,
-            check1: false
         });
     }
 
@@ -29,17 +23,8 @@ class TradeSearch extends React.Component {
         }
 
         if (existingBook) {
-            this.setState({
-                num: existingBook.book_num,
-                check1: true,
-                check2: true
-            });
             this.props.handleSearchNameBook(currBookName);
         } else {
-            this.setState({
-                check1: false,
-                check2: false
-            });
             this.props.handleSearchNameBook('');
         }
         this.props.handleSearchBook();
