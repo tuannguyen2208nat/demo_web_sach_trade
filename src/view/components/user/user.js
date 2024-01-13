@@ -30,6 +30,12 @@ const User = (props) => {
                     <button onClick={() => setState(false)}>Đăng nhập</button>
                 </div>
             )}
+            {
+                state !== null &&
+                <div className="back">
+                    <i className="fa-solid fa-angles-left" onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
+                </div>
+            }
             {state === true && (
                 <>{handleRegister()}</>
             )}

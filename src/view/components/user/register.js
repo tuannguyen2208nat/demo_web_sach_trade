@@ -70,7 +70,7 @@ const Register = (props) => {
                     {loadingApi ? <i className="fa-solid fa-spinner fa-spin-pulse"></i> : <span>Register</span>}
                 </button>
                 <br />
-                <div className="back" style={{ fontSize: '12px', cursor: 'pointer' }}>
+                <div className="back" >
                     <i className="fa-solid fa-angles-left" onClick={() => handleGoback()}></i> <span onClick={() => handleGoback()}>Go back</span>
                 </div>
 

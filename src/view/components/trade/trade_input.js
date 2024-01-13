@@ -92,28 +92,26 @@ class TradeInput extends React.Component {
         this.setState({ button_on: false })
     }
 
-
     render() {
         return (
             <>
                 <div className="first">
-                    Sách muốn tìm
-                </div>
-                <div className="second">
                     <input
+                        placeholder="Bạn muốn tìm sách gì ? "
                         type="text"
                         value={this.state.book}
                         onChange={this.handleChangeBook}
+                        style={{ width: '670px', height: '27px', borderRadius: '5px', fontSize: '20px' }}
                     />
                     &nbsp;
-                    <button style={{ cursor: 'pointer' }} onClick={this.handleSubmitChangeBook}>Tìm</button>
+                    <button style={{ cursor: 'pointer', width: '60px', height: '30px', borderRadius: '5px' }} onClick={this.handleSubmitChangeBook}>Tìm</button>
                 </div>
-                <div className="third">
+                {/* <div className="second">
                     {this.state.check2 === true && this.state.check1 === true && (
-                        <div className="third_child">
+                        <div className="second_child">
                             Tên sách : {this.state.book} , số lượng : {this.state.num} cuốn
                             <br />
-                            {this.state.button_on === false && <button style={{ cursor: 'pointer' }} className="third_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>}
+                            {this.state.button_on === false && <button style={{ cursor: 'pointer' }} className="second_button" onClick={() => this.handleSubmitTrade()}>TRADE</button>}
                             {this.state.button_on === true &&
                                 <>
                                     &nbsp;
@@ -127,12 +125,7 @@ class TradeInput extends React.Component {
                             }
                         </div>
                     )}
-                    {this.state.check2 === false && (
-                        <div>
-                            Không có dữ liệu
-                        </div>
-                    )}
-                </div>
+                </div> */}
             </>
         );
     }

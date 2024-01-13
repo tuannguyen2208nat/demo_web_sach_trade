@@ -1,4 +1,4 @@
-.third{
+.second{
     font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
     margin : 10px auto;
@@ -6,11 +6,11 @@
     width: 400px;
     height: 40px;
 }
-.third_child{
+.second_child{
     height: 79px;
     border-bottom: 1px solid grey;
 }
-.third_button{
+.second_button{
     width: 60px;
     height: 50px;
     background-color:  #04AA6D;
@@ -26,11 +26,12 @@
     height:70px;
     width:70px;
 }
+
 .gridContainerStyle {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 50px; 
-    margin: 150px auto;
+    margin: 100px auto;
     max-width: 800px;
 }
 
@@ -58,7 +59,15 @@
         height: 50px;
         cursor: pointer;
     }
+}
 
+.back{
+    margin-top:30px;
+    position: absolute;
+    top: 47px;
+    left: 550px;
+    font-size:16px;
+    cursor:pointer;
 }
 
 

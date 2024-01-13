@@ -102,9 +102,22 @@ class Trade extends React.Component {
         })
     }
 
+    handleGoback = () => {
+        this.setState({
+            search_book: false,
+            search_name_book: ''
+        })
+    }
+
     render() {
         return (
             <>
+                {this.state.search_book &&
+                    <div className="back">
+                        <i className="fa-solid fa-angles-left" onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
+                    </div>
+                }
+
                 <div style={{ paddingTop: '50px' }}>
                     <TradeInput
                         book={this.state.book}
@@ -118,6 +131,7 @@ class Trade extends React.Component {
                         user_logged={this.state.user_logged}
                     />
                     <TradeShow
+                        user_logged={this.state.user_logged}
                         search_book={this.state.search_book}
                         book={this.state.book}
                         search_name_book={this.state.search_name_book}
