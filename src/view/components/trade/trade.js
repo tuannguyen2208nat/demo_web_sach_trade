@@ -1,5 +1,5 @@
 import React from "react";
-import TradeInput from "./trade_input";
+import TradeSearch from "./trade_search";
 import TradeAdd from "./trade_add";
 import TradeShow from "./trade_show";
 import './trade.scss'
@@ -117,11 +117,9 @@ class Trade extends React.Component {
                         <i className="fa-solid fa-angles-left" onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}></i> <span onClick={() => this.handleGoback()} style={{ cursor: 'pointer' }}>Go back</span>
                     </div>
                 }
-
                 <div style={{ paddingTop: '50px' }}>
-                    <TradeInput
+                    <TradeSearch
                         book={this.state.book}
-                        tradeBook={this.tradeBook}
                         user_logged={this.state.user_logged}
                         handleSearchBook={this.handleSearchBook}
                         handleSearchNameBook={this.handleSearchNameBook}
@@ -135,6 +133,7 @@ class Trade extends React.Component {
                         search_book={this.state.search_book}
                         book={this.state.book}
                         search_name_book={this.state.search_name_book}
+                        tradeBook={this.tradeBook}
                     />
                 </div>
             </>

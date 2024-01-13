@@ -12,7 +12,6 @@ class Trade_add extends React.Component {
             book_num: 0
         };
     }
-
     handleButton_addBook = () => {
         let user_logged = this.props.user_logged;
         if (!user_logged) {
@@ -57,7 +56,7 @@ class Trade_add extends React.Component {
     render() {
         return (
             <>
-                <button style={{ cursor: 'pointer' }} className="add" onClick={() => this.handleButton_addBook()}>
+                <button style={{ cursor: 'pointer', height: '50px', width: '100px' }} className="add" onClick={() => this.handleButton_addBook()}>
                     Add book
                 </button>
 
